@@ -83,6 +83,4 @@ ActiveRecord::Schema.define(:version => 20110912020322) do
 
   add_index "stocks", ["symbol"], :name => "index_stocks_on_symbol"
 
-  add_foreign_key "eq_quotes", "stocks", :name => "eq_quotes_stock_id_fk"
-
 end

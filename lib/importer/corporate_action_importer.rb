@@ -3,7 +3,7 @@ module Importer
     include NseConnection
 
     def import
-      stocks = Stock.all(conditions: "series = 'e'")
+      stocks = Stock.all(:conditions=> "series = 'e'")
       stocks.each do |stock|
         response = get("/marketinfo/companyinfo/eod/action.jsp?symbol=#{CGI.escape(stock.symbol)}")
         next if response.class == Net::HTTPNotFound
@@ -14,11 +14,12 @@ module Importer
     def parse(symbol, data)
       p symbol
       doc = Nokogiri::HTML(data)
-      open('company_action_consolidated.csv', 'w+') do |file|
+      open('company_action_consolidated.csv', 'a') do |file|
         doc.css('table table table table table tr').each do |row|
           columns = row.css('td')
           next unless columns[0].text.strip =~ /EQ/
-          file << "#{symbol}|#{Date.parse(columns[4].text)}|#{columns[7].text}\n"
+          #file << "#{symbol}|#{Date.parse(columns[4].text)}|#{columns[7].text}\n"
+          file << "#{symbol}|#{Date.strptime(columns[4].text,'%d/%m/%Y')}|#{columns[7].text}\n"
         end
       end
     end

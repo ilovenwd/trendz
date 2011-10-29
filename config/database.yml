@@ -1,7 +1,9 @@
 development:
-  adapter: postgresql
-  database: trendz_development
-  username: postgres
+  adapter: sqlite3
+  database: db/trendz_development.sqlite
+  pool: 5
+  timeout: 5000
+  username:
   password:
 
 test:

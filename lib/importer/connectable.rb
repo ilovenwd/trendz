@@ -1,5 +1,7 @@
 module Importer
   module Connectable
+    START_DATE = '2011/10/20'
+
     def connection(host)
       @http ||= create_connection(host)
     end

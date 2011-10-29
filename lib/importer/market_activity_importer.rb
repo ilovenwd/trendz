@@ -15,14 +15,14 @@ module Importer
 
     def import_fo_data
       start_date = MarketActivity.maximum('date', :conditions => 'fii_index_futures_buy is not null')
-      start_date = Date.parse('1/1/2011') if start_date == nil
+      start_date = Date.parse(START_DATE) if start_date == nil
       (start_date .. Date.today).each do |date|
         import_and_save_data_for(date)
       end
     end
 
     def import_equity_data
-      start_date = ((MarketActivity.maximum('date') or Date.parse('31/12/2009')) + 1.day).strftime('%d-%m-%Y')
+      start_date = ((MarketActivity.maximum('date') or Date.parse(START_DATE)) + 1.day).strftime('%d-%m-%Y')
       end_date = Date.today.strftime('%d-%m-%Y')
       url = "/products/dynaContent/equities/equities/eq_fiidii_archives.jsp?category=all&check=new&fromDate=#{start_date}&toDate=#{end_date}"
       Rails.logger.info "Processing Equity market activity @ #{url}"

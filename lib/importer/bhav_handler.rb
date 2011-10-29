@@ -1,5 +1,7 @@
 module Importer
   module BhavHandler
+    START_DATE = '2011/10/20'
+
     module ClassMethods
       def model(model_name)
         class_eval do
@@ -12,7 +14,7 @@ module Importer
       def startdate(date)
         class_eval do
           define_method :startdate do
-            date
+            date or START_DATE
           end
         end
       end

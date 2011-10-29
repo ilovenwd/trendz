@@ -1,3 +1,5 @@
+require 'json'
+
 module Importer
   class NiftyLiveImporter
     include NseConnection

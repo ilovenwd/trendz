@@ -6,6 +6,8 @@ gem 'pg', '0.11.0'
 gem "foreigner", "1.0.3"
 gem 'nokogiri', '1.5.0'
 gem 'roo', '1.9.7'
+gem 'sqlite3'
+gem 'json'
 
 group :development, :test do
   gem "rspec-rails", "2.6.1"

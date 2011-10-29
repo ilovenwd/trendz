@@ -1,6 +1,6 @@
 class AddYahooCodeToStocks < ActiveRecord::Migration
   def self.up
-    add_column :stocks, :yahoo_code, :string, limit: 15
+    add_column :stocks, :yahoo_code, :string, :limit=>15
     {'BANKNIFTY' => '^NSEBANK',
     'CNXIT' => '^CNXIT',
     'NIFTY' => '^NSEI',
